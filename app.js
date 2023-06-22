@@ -2,7 +2,11 @@ const express = require("express");
 
 const app = express();
 
-const mensagens = require("./controles/mensagens")
+app.use(express.json());
+
+const db = require("./db/models");
+
+const mensagens = require("./controles/mensagens");
 
 app.use("/mensage", mensagens)
 
