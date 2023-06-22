@@ -2,10 +2,13 @@ import './App.css';
 import React from 'react';
 
 function App() {
+
+  const
+  
   return (
     <div className="App">
 
-      <h1>Cadastro de cliente</h1>
+      <h2>Cadastro de cliente</h2>
 
       <label>Nome: </label>
       <br/>
@@ -52,19 +55,15 @@ function App() {
       required
       /><br/>
 
-      <input 
-      className='button'
-      type='submit' 
-      value="ENVIAR"
-      />
+      <button
+      className='button_enviar'
+      type='submit'>ENVIAR</button>
 
-      <input 
-      className='button'
-      type='reset' 
-      value="LIMPAR"
-      />
+      <button
+      className='button_limpar'
+      type='reset'>LIMPAR</button>
 
-      <h1>Buscar cliente</h1>
+      <h2>Buscar cliente</h2>
 
       <label>Nome: </label>
       <br/>
@@ -111,17 +110,13 @@ function App() {
       required
       /><br/>
 
-      <input 
-      className='button'
-      type='submit' 
-      value="ENVIAR"
-      />
+      <button
+      className='button_enviar'
+      type='submit'>ENVIAR</button>
 
-      <input 
-      className='button'
-      type='reset' 
-      value="LIMPAR"
-      />
+      <button
+      className='button_limpar'
+      type='reset'>LIMPAR</button>
 
     </div>
   );
