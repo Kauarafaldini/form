@@ -91,62 +91,64 @@ function App() {
       
       </form>
 
-      <h2>Buscar cliente</h2>
+      <form>
+        <h2>Buscar cliente</h2>
 
-      <label>Nome: </label>
-      <br/>
-      <input 
-      type='text'
-      name='text'
-      placeholder='NOME'
-      required
-      /><br/>
+        <label>Nome: </label>
+        <br/>
+        <input 
+        type='text'
+        name='text'
+        placeholder='NOME'
+        required
+        /><br/>
 
-      <label>Sobrenome: </label>
-      <br/>
-      <input 
-      type='text'
-      name='text'
-      placeholder='SOBRENOME'
-      required
-      /><br/>
+        <label>Sobrenome: </label>
+        <br/>
+        <input 
+        type='text'
+        name='text'
+        placeholder='SOBRENOME'
+        required
+        /><br/>
 
-      <label>Usuario: </label>
-      <br/>
-      <input 
-      type='text'
-      name='text'
-      placeholder='NOME DE USUARIO'
-      required
-      /><br/>
+        <label>Usuario: </label>
+        <br/>
+        <input 
+        type='text'
+        name='text'
+        placeholder='NOME DE USUARIO'
+        required
+        /><br/>
 
-      <label>E-mail: </label>
-      <br/>
-      <input 
-      type='email'
-      name='email'
-      placeholder='E-MAIL'
-      required
-      /><br/>
+        <label>E-mail: </label>
+        <br/>
+        <input 
+        type='email'
+        name='email'
+        placeholder='E-MAIL'
+        required
+        /><br/>
 
-      <label>Telefone: </label>
-      <br/>
-      <input
-      type='text'
-      name='fone'
-      placeholder='TELEFONE OU CELULAR'
-      required
-      /><br/>
+        <label>Telefone: </label>
+        <br/>
+        <input
+        type='text'
+        name='fone'
+        placeholder='TELEFONE OU CELULAR'
+        required
+        /><br/>
 
-      <button
-      className='button_enviar'
-      type='submit'>BUSCAR</button>
+        <button
+        className='button_enviar'
+        type='submit'>BUSCAR</button>
 
-      <button
-      className='button_limpar'
-      type='reset'>LIMPAR</button>
-
+        <button
+        className='button_limpar'
+        type='reset'>LIMPAR</button>
+      </form>
     </div>
+    
   );
 }
 
