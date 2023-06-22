@@ -1,0 +1,25 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Api para enviar dados ao banco",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kauarafaldini/form.git"
+  },
+  "author": "Kauã Rafaldini dos Santos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kauarafaldini/form/issues"
+  },
+  "homepage": "https://github.com/Kauarafaldini/form#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
