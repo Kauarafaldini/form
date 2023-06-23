@@ -4,8 +4,6 @@ const app = express();
 
 app.use(express.json());
 
-const db = require("./db/models");
-
 const mensagens = require("./controles/mensagens");
 
 app.use("/mensage", mensagens)
