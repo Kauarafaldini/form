@@ -14,7 +14,7 @@ function App() {
 
   const vlInput = e => setCliente({...cliente, [e.target.name]: e.target.value});
 
-  const enviarmsg = async (e) => {
+  const enviarmsg = (e) => {
 
     e.preventDefault();
 
@@ -23,19 +23,6 @@ function App() {
     console.log(`Nome: ${cliente.usuario}`);
     console.log(`Nome: ${cliente.email}`);
     console.log(`Nome: ${cliente.fone}`);
-
-    const Envdados = {
-      'Envdados': {
-        'Content-Type': 'application/json'
-      }
-    }
-
-    await axios.post('http://localhost:3000/mensage', cliente, Envdados)
-    .then((retorno) => {
-
-    }).catch((error) => {
-
-    });
   }
   
   return (
@@ -44,6 +31,8 @@ function App() {
       <form onSubmit={enviarmsg}>
 
         <h2>Cadastro de cliente</h2>
+
+        {mensage ? <p>{mensage}</p> : ""}
 
         <label>Nome: </label>
         <br/>
