@@ -9,7 +9,7 @@ router.post("/", async (req, res) => {
 
     var dados= req.body
 
-    await db.mensagens.create(dados).then((dadosMensagem) => {
+    await db.clientes.create(dados).then((dadosMensagem) => {
 
         return res.js({
             error: false,
