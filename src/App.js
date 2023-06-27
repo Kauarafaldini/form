@@ -43,7 +43,36 @@ function App() {
         setMensage("Error: Cadastro não efetuado. Por favor, tente novamente.");
       }
     }
-  }
+  };
+
+  const [clientesEncontrados, setclientesEncontrados] = useState([]);
+
+  const buscarCliente = async (e) => {
+    e.preventDefault();
+
+    const { nome, sobrenome, usuario, email, fone } = cliente;
+
+    const search = new URLSearchParams({
+      nome,
+      sobrenome,
+      usuario,
+      email,
+      fone
+    });
+
+    try{
+      const response = await axios.get(`http://localhost:8080/clientes?${search}`);
+
+      const clientesEncontrados = response.data.dados;
+
+      console.log(clientesEncontrados)
+
+      setclientesEncontrados(clientesEncontrados);
+
+    } catch (error) {
+      console.log(error);
+      }
+  };
 
   return (
     <div className="App">
@@ -119,7 +148,7 @@ function App() {
       
       </form>
 
-      <form>
+      <form onSubmit={buscarCliente}>
         <h2>Buscar cliente</h2>
 
         <label>Nome: </label>
@@ -128,24 +157,6 @@ function App() {
         type='text'
         name='text'
         placeholder='NOME'
-        required
-        /><br/>
-
-        <label>Sobrenome: </label>
-        <br/>
-        <input 
-        type='text'
-        name='text'
-        placeholder='SOBRENOME'
-        required
-        /><br/>
-
-        <label>Usuario: </label>
-        <br/>
-        <input 
-        type='text'
-        name='text'
-        placeholder='NOME DE USUARIO'
         required
         /><br/>
 
@@ -158,25 +169,28 @@ function App() {
         required
         /><br/>
 
-        <label>Telefone: </label>
-        <br/>
-        <input
-        type='text'
-        name='fone'
-        placeholder='TELEFONE OU CELULAR'
-        required
-        /><br/>
-
         <button
-        className='button_enviar'
+        className='button_buscar'
         type='submit'>BUSCAR</button>
 
         <button
         className='button_limpar'
         type='reset'>LIMPAR</button>
       </form>
+
+      {clientesEncontrados.length > 0 && (
+        <div>
+          <h2>Resultados da busca:</h2>
+          <ul>
+            {clientesEncontrados.map((cliente) => (
+              <li key={cliente.id}>
+                Nome: {cliente.nome}, Email: {cliente.email}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
-    
   );
 }
 
