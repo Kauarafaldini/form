@@ -47,25 +47,25 @@ function App() {
 
   const [clientesEncontrados, setclientesEncontrados] = useState([]);
 
+  const [clienteBusca, setClienteBusca] = useState ({
+    nome: '',
+    email: ''
+  });
+
   const buscarCliente = async (e) => {
     e.preventDefault();
 
-    const { nome, sobrenome, usuario, email, fone } = cliente;
+    const { nome, email } = clienteBusca;
 
     const search = new URLSearchParams({
       nome,
-      sobrenome,
-      usuario,
-      email,
-      fone
+      email
     });
 
     try{
       const response = await axios.get(`http://localhost:8080/clientes?${search}`);
 
       const clientesEncontrados = response.data.dados;
-
-      console.log(clientesEncontrados)
 
       setclientesEncontrados(clientesEncontrados);
 
@@ -155,9 +155,11 @@ function App() {
         <br/>
         <input 
         type='text'
-        name='text'
+        name='nome'
         placeholder='NOME'
         required
+        onChange={(e) => setClienteBusca({ ...clienteBusca, nome: e.target.value})}
+        value={clienteBusca.nome}
         /><br/>
 
         <label>E-mail: </label>
@@ -167,6 +169,8 @@ function App() {
         name='email'
         placeholder='E-MAIL'
         required
+        onChange={(e) => setClienteBusca({ ...clienteBusca, email: e.target.value})}
+        value={clienteBusca.email}
         /><br/>
 
         <button
@@ -179,12 +183,13 @@ function App() {
       </form>
 
       {clientesEncontrados.length > 0 && (
-        <div>
+        <div className='ifBusca'>
           <h2>Resultados da busca:</h2>
           <ul>
             {clientesEncontrados.map((cliente) => (
               <li key={cliente.id}>
-                Nome: {cliente.nome}, Email: {cliente.email}
+                Nome: {cliente.nome}<br/> 
+                Email: {cliente.email}<br/>
               </li>
             ))}
           </ul>
