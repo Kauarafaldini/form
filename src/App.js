@@ -80,18 +80,17 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <h1>O que deseja fazer?</h1>
-
+      <div className='caixa_botao'>
+          <h3 className='apresentacao'>O que deseja fazer?</h3>
+        
         <button onClick={() => setCadastrar(!cadastrar)}>Cadastrar</button>
-
         <button onClick={() => setBuscar(!buscar)}>Buscar</button>
       </div>
 
       {cadastrar?
       <form onSubmit={enviarmsg}>
 
-        <h2>Cadastro de cliente</h2>
+        <h2 className='apresentacao'>Cadastro de cliente</h2>
 
         {mensage ? <p>{mensage}</p> : ""}
 
@@ -164,7 +163,7 @@ function App() {
 
       {buscar?
       <form onSubmit={buscarCliente}>
-        <h2>Buscar cliente</h2>
+        <h2 className='apresentacao'>Buscar cliente</h2>
 
         <label>Nome: </label>
         <br/>
@@ -195,22 +194,27 @@ function App() {
         <button
         className='button_limpar'
         type='reset'>LIMPAR</button>
+      
+        {clientesEncontrados.length > 0 && (
+          <div className='ifBusca'>
+            <h3>Resultados da busca:</h3>
+            <ul>
+              <div className='retorno'>
+                {clientesEncontrados.map((cliente) => (
+                  <li key={cliente.id}>
+                    Nome: {cliente.nome}<br/>
+                    Sobrenome: {cliente.sobrenome}<br/>
+                    Usuario: {cliente.usuario}<br/>
+                    Email: {cliente.email}<br/>
+                    Telefone: {cliente.fone}<br/>
+                  </li>
+                ))}
+              </div>
+            </ul>
+          </div>
+        )}
       </form>
       :null}
-
-      {clientesEncontrados.length > 0 && (
-        <div className='ifBusca'>
-          <h2>Resultados da busca:</h2>
-          <ul>
-            {clientesEncontrados.map((cliente) => (
-              <li key={cliente.id}>
-                Nome: {cliente.nome}<br/> 
-                Email: {cliente.email}<br/>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   );
 }
