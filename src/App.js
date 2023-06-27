@@ -4,6 +4,10 @@ import axios from 'axios';
 
 function App() {
 
+  const [cadastrar,setCadastrar] = useState(false)
+
+  const [buscar,setBuscar] = useState(false)
+
   const [cliente, setCliente] = useState({
     nome:'',
     sobrenome:'',
@@ -76,7 +80,15 @@ function App() {
 
   return (
     <div className="App">
+      <div>
+        <h1>O que deseja fazer?</h1>
 
+        <button onClick={() => setCadastrar(!cadastrar)}>Cadastrar</button>
+
+        <button onClick={() => setBuscar(!buscar)}>Buscar</button>
+      </div>
+
+      {cadastrar?
       <form onSubmit={enviarmsg}>
 
         <h2>Cadastro de cliente</h2>
@@ -147,7 +159,10 @@ function App() {
         type='reset'>LIMPAR</button>
       
       </form>
+      :null}
 
+
+      {buscar?
       <form onSubmit={buscarCliente}>
         <h2>Buscar cliente</h2>
 
@@ -181,6 +196,7 @@ function App() {
         className='button_limpar'
         type='reset'>LIMPAR</button>
       </form>
+      :null}
 
       {clientesEncontrados.length > 0 && (
         <div className='ifBusca'>
