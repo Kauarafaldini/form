@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from 'axios'; 
 
 function App() {
 
@@ -12,38 +12,39 @@ function App() {
     fone:''
   });
 
-  const vlInput = e => setCliente({...cliente, [e.target.name]: e.target.value});
-
   const [mensage, setMensage] = useState("");
+
+  const vlInput = e => setCliente({...cliente, [e.target.name]: e.target.value});
 
   const enviarmsg = async (e) => {
 
     e.preventDefault();
 
-    console.log(`Nome: ${cliente.name}`);
-    console.log(`Nome: ${cliente.sobrenome}`);
-    console.log(`Nome: ${cliente.usuario}`);
-    console.log(`Nome: ${cliente.email}`);
-    console.log(`Nome: ${cliente.fone}`);
-
-    const Envdados = {
-      'Envdados': {
+    const headers = {
         'Content-Type': 'application/json'
-      }
-    }
+    };
 
-    await axios.post('http://localhost:3000/mensage', cliente, Envdados)
-    .then((retorno) => {
+    try {
+    const retorno = await axios.post('http://localhost:8080/clientes', cliente, {headers} );
 
       setMensage(retorno.data.mensage);
 
-    }).catch((error) => {
-
-      setMensage(error.retorno.data.mensage);
-
-    });
+      setCliente({
+        nome:'',
+        sobrenome:'',
+        usuario:'',
+        email:'',
+        fone:''
+      })
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.mensage) {
+        setMensage(error.response.data.mensage);
+      } else {
+        setMensage("Error: Cadastro não efetuado. Por favor, tente novamente.");
+      }
+    }
   }
-  
+
   return (
     <div className="App">
 
@@ -61,6 +62,7 @@ function App() {
         placeholder='NOME'
         required
         onChange={vlInput}
+        value={cliente.nome}
         /><br/>
 
         <label>Sobrenome: </label>
@@ -71,6 +73,7 @@ function App() {
         placeholder='SOBRENOME'
         required
         onChange={vlInput}
+        value={cliente.sobrenome}
         /><br/>
 
         <label>Usuario: </label>
@@ -81,6 +84,7 @@ function App() {
         placeholder='NOME DE USUARIO'
         required
         onChange={vlInput}
+        value={cliente.usuario}
         /><br/>
 
         <label>E-mail: </label>
@@ -91,6 +95,7 @@ function App() {
         placeholder='E-MAIL'
         required
         onChange={vlInput}
+        value={cliente.email}
         /><br/>
 
         <label>Telefone: </label>
@@ -101,6 +106,7 @@ function App() {
         placeholder='TELEFONE OU CELULAR'
         required
         onChange={vlInput}
+        value={cliente.fone}
         /><br/>
 
         <button
