@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from 'axios'; 
 
 function App() {
 
@@ -12,9 +12,9 @@ function App() {
     fone:''
   });
 
-  const vlInput = e => setCliente({...cliente, [e.target.name]: e.target.value});
-
   const [mensage, setMensage] = useState("");
+
+  const vlInput = e => setCliente({...cliente, [e.target.name]: e.target.value});
 
   const enviarmsg = async (e) => {
 
@@ -25,9 +25,9 @@ function App() {
     };
 
     try {
-    const retorno = axios.post('http://localhost:3001/clientes', cliente, headers)
+    const retorno = await axios.post('http://localhost:8080/clientes', cliente, {headers} );
 
-      setMensage((await retorno).data.mensage);
+      setMensage(retorno.data.mensage);
 
       setCliente({
         nome:'',
